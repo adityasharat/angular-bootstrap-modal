@@ -4,9 +4,8 @@
 (function (angular) {
     var AngularBootstrapModal = angular.module('AngularBootstrapModal', []);
 
-    AngularBootstrapModal.directive('modalDialog', [
-
-        function () {
+    AngularBootstrapModal.directive('modalDialog', ['$timeout',
+        function ($timeout) {
             return {
                 name: 'modalDialog',
                 restrict: 'E',
@@ -15,12 +14,20 @@
                 transclude: true,
                 link: function ($scope, iElm, iAttrs) {
                     $scope.dialogStyle = {};
+
                     if (iAttrs.width) {
                         $scope.dialogStyle.width = iAttrs.width;
                     }
                     if (iAttrs.height) {
                         $scope.dialogStyle.height = iAttrs.height;
                     }
+
+                    iElm.find('[data-dismiss=modal]').on('click', function () {
+                        iElm.modal('hide');
+                        $timeout(function () {
+                            $('body .modal-backdrop').remove();
+                        });
+                    });
 
                     $scope.$parent.$on('showModal', function (event, name) {
                         if (iAttrs.name === name) {
@@ -31,6 +38,9 @@
                     $scope.$parent.$on('hideModal', function (event, name) {
                         if (iAttrs.name === name) {
                             iElm.modal('hide');
+                            $timeout(function () {
+                                $('body .modal-backdrop').remove();
+                            });
                         }
                     });
                 }

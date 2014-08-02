@@ -24,7 +24,7 @@ Show the modal
 $scope.$emit('showModal', 'options-modal'); 	// the 2nd argument is the name attribute of the modal
 `
 
-Show the modal
+Hide the modal
 
 `
 $scope.$emit('hideModal', 'options-modal'); 	// the 2nd argument is the name attribute of the modal

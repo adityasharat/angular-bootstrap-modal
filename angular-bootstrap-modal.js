@@ -15,6 +15,8 @@
         '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' +
         '</div>';
 
+    var MODAL_BODY_TEMPLATE = '<div class="modal-body" ng-transclude></div>';
+
     AngularBootstrapModal.directive('modalDialog', ['$timeout',
         function ($timeout) {
             var linker;
@@ -84,7 +86,7 @@
                 name: 'modalBody',
                 require: '^modal-dialog',
                 restrict: 'E',
-                template: '<div class="modal-body" ng-transclude></div>',
+                template: MODAL_BODY_TEMPLATE,
                 replace: true,
                 transclude: true
             };

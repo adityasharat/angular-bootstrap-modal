@@ -4,20 +4,22 @@
 (function (angular) {
     var AngularBootstrapModal = angular.module('AngularBootstrapModal', []);
 
-    var MODAL_DIALOG_TEMPLATE = '<div class="modal fade custom" tabindex="-1" role="dialog" aria-labelledby="message-label" aria-hidden="true">' +
+    var MODAL_DIALOG_TEMPLATE, MODAL_HEADER_TEMPLATE, MODAL_BODY_TEMPLATE, MODAL_FOOTER_TEMPLATE;
+
+    MODAL_DIALOG_TEMPLATE = '<div class="modal fade custom" tabindex="-1" role="dialog" aria-labelledby="message-label" aria-hidden="true">' +
         '<div class="modal-dialog" ng-style="dialogStyle">' +
         '<div class="modal-content" ng-transclude></div>' +
         '</div>' +
         '</div>';
 
-    var MODAL_HEADER_TEMPLATE = '<div class="modal-header">' +
+    MODAL_HEADER_TEMPLATE = '<div class="modal-header">' +
         '<div class="modal-sub-header" ng-transclude></div>' +
         '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' +
         '</div>';
 
-    var MODAL_BODY_TEMPLATE = '<div class="modal-body" ng-transclude></div>';
+    MODAL_BODY_TEMPLATE = '<div class="modal-body" ng-transclude></div>';
 
-    var MODAL_FOOTER_TEMPLATE = '<div class="modal-footer" ng-transclude></div>';
+    MODAL_FOOTER_TEMPLATE = '<div class="modal-footer" ng-transclude></div>';
 
     AngularBootstrapModal.directive('modalDialog', ['$timeout',
         function ($timeout) {

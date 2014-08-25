@@ -10,6 +10,11 @@
         '</div>' +
         '</div>';
 
+    var MODAL_HEADER_TEMPLATE = '<div class="modal-header">' +
+        '<div class="modal-sub-header" ng-transclude></div>' +
+        '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' +
+        '</div>';
+
     AngularBootstrapModal.directive('modalDialog', ['$timeout',
         function ($timeout) {
             var linker;
@@ -65,7 +70,7 @@
                 name: 'modalHeader',
                 require: '^modal-dialog',
                 restrict: 'E',
-                template: '<div class="modal-header"><div class="modal-sub-header" ng-transclude></div><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button></div>',
+                template: MODAL_HEADER_TEMPLATE,
                 replace: true,
                 transclude: true
             };

@@ -4,12 +4,18 @@
 (function (angular) {
     var AngularBootstrapModal = angular.module('AngularBootstrapModal', []);
 
+    var MODAL_DIALOG_TEMPLATE = '<div class="modal fade custom" tabindex="-1" role="dialog" aria-labelledby="message-label" aria-hidden="true">' +
+        '<div class="modal-dialog" ng-style="dialogStyle">' +
+        '<div class="modal-content" ng-transclude></div>' +
+        '</div>' +
+        '</div>';
+
     AngularBootstrapModal.directive('modalDialog', ['$timeout',
         function ($timeout) {
             return {
                 name: 'modalDialog',
                 restrict: 'E',
-                template: '<div class="modal fade custom" tabindex="-1" role="dialog" aria-labelledby="message-label" aria-hidden="true"><div class="modal-dialog" ng-style="dialogStyle"><div class="modal-content" ng-transclude></div></div></div>',
+                template: MODAL_DIALOG_TEMPLATE,
                 replace: true,
                 transclude: true,
                 link: function ($scope, iElm, iAttrs) {

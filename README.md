@@ -12,8 +12,8 @@ create bootsrap modals with ease using this directive
         <span> YAYYY !!</span>
     </modal-body>
     <modal-footer>
-        <button class="btn btn-danger" ng-click="doStuff()">Yes</button>
-        <button class="btn third_action_button" data-dismiss="modal" aria-hidden="true">No</button>
+        <button class="btn btn-success" ng-click="doStuff()">Yes</button>
+        <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">No</button>
     </modal-footer>
 </modal-dialog>
 ```

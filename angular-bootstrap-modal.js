@@ -17,6 +17,8 @@
 
     var MODAL_BODY_TEMPLATE = '<div class="modal-body" ng-transclude></div>';
 
+    var MODAL_FOOTER_TEMPLATE = '<div class="modal-footer" ng-transclude></div>';
+
     AngularBootstrapModal.directive('modalDialog', ['$timeout',
         function ($timeout) {
             var linker;
@@ -100,7 +102,7 @@
                 name: 'modalFooter',
                 require: '^modal-dialog',
                 restrict: 'E',
-                template: '<div class="modal-footer" ng-transclude></div>',
+                template: MODAL_FOOTER_TEMPLATE,
                 replace: true,
                 transclude: true
             };

@@ -12,44 +12,48 @@
 
     AngularBootstrapModal.directive('modalDialog', ['$timeout',
         function ($timeout) {
+            var linker;
+
+            linker = function ($scope, iElm, iAttrs) {
+                $scope.dialogStyle = {};
+
+                if (iAttrs.width) {
+                    $scope.dialogStyle.width = iAttrs.width;
+                }
+                if (iAttrs.height) {
+                    $scope.dialogStyle.height = iAttrs.height;
+                }
+
+                iElm.find('[data-dismiss=modal]').on('click', function () {
+                    iElm.modal('hide');
+                    $timeout(function () {
+                        $('body .modal-backdrop').remove();
+                    });
+                });
+
+                $scope.$parent.$on('showModal', function (event, name) {
+                    if (iAttrs.name === name) {
+                        iElm.modal('show');
+                    }
+                });
+
+                $scope.$parent.$on('hideModal', function (event, name) {
+                    if (iAttrs.name === name) {
+                        iElm.modal('hide');
+                        $timeout(function () {
+                            $('body .modal-backdrop').remove();
+                        });
+                    }
+                });
+            };
+
             return {
                 name: 'modalDialog',
                 restrict: 'E',
                 template: MODAL_DIALOG_TEMPLATE,
                 replace: true,
                 transclude: true,
-                link: function ($scope, iElm, iAttrs) {
-                    $scope.dialogStyle = {};
-
-                    if (iAttrs.width) {
-                        $scope.dialogStyle.width = iAttrs.width;
-                    }
-                    if (iAttrs.height) {
-                        $scope.dialogStyle.height = iAttrs.height;
-                    }
-
-                    iElm.find('[data-dismiss=modal]').on('click', function () {
-                        iElm.modal('hide');
-                        $timeout(function () {
-                            $('body .modal-backdrop').remove();
-                        });
-                    });
-
-                    $scope.$parent.$on('showModal', function (event, name) {
-                        if (iAttrs.name === name) {
-                            iElm.modal('show');
-                        }
-                    });
-
-                    $scope.$parent.$on('hideModal', function (event, name) {
-                        if (iAttrs.name === name) {
-                            iElm.modal('hide');
-                            $timeout(function () {
-                                $('body .modal-backdrop').remove();
-                            });
-                        }
-                    });
-                }
+                link: linker
             };
         }
     ]);
